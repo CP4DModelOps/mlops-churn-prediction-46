@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "name": "deploy-train-churn-prediction-model",
+    "asset_type": "job",
+    "origin_country": "us",
+    "asset_category": "USER",
+    "created_at": "2023-01-15T11:49:40Z",
+    "created": 1673783380621,
+    "asset_id": "job.deploytrainchurnpredictionmodel",
+    "asset_attributes": [
+      "job"
+    ],
+    "description": "Train churn prediction model"
+  },
+  "entity": {
+    "job": {
+      "asset_ref_type": "notebook",
+      "configuration": {
+        "env_id": "rt222py",
+        "file_ref": "src/train-churn-prediction.ipynb",
+        "entrypoint": "",
+        "env_type": "notebook",
+        "env_variables": []
+      },
+      "last_run_initiator": "deprecated field",
+      "last_run_time": "deprecated field",
+      "last_run_status": "deprecated field",
+      "last_run_status_timestamp": 0,
+      "future_scheduled_runs": [],
+      "enable_notifications": true,
+      "retention_policy": {
+        "amount": 5
+      },
+      "project_name": "mlops-churn-prediction-46",
+      "schedule_id": "",
+      "schedule_creator_id": ""
+    }
+  },
+  "attachments": []
+}
