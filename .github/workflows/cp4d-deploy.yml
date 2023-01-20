@@ -1,0 +1,37 @@
+name: train-and-deploy-churn-model
+
+on:
+  push:
+    branches: [ "uat", "prd" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+
+  run-training-jobs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Ensure scripts are runnable
+        run: |
+          jq --version
+          chmod +x src/scripts/*.sh
+
+      - name: Download cdpctl
+        run: |
+          src/scripts/download-cpdctl.sh
+
+      - name: Set up cpdctl credentials
+        env:
+          CPD_USER_NAME: ${{ secrets.CPD_USER_NAME }}
+          CPD_USER_APIKEY: ${{ secrets.CPD_USER_APIKEY }}
+          CPD_URL: ${{ vars.CPD_URL }}
+        run: |
+          src/scripts/configure-cpdctl.sh
+
+      - name: Run deployment jobs
+        run: |
+          src/scripts/run-deployment-jobs.sh
